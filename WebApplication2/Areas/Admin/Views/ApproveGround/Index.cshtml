@@ -1,0 +1,98 @@
+﻿@model IEnumerable<BOL.tbl_Ground>
+
+
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2> Grounds Status</h2>
+<script>
+    function ConfirmApprove() {
+        return confirm('Are you Sure want to Approve?');
+
+    }
+    function ConfirmReject() {
+        return confirm('Are you Sure want to Reject?');
+    }
+</script>
+@if (TempData["Msg"] != null)
+{
+    <h3>
+        @TempData["Msg"].ToString()
+    </h3>
+}
+
+@if (ViewBag.Status == "P")
+{
+    <b>@Html.ActionLink("Pending Grounds |", "Index", new { Status = "P" })</b>
+}
+else
+{
+    @Html.ActionLink("Pending Grounds |", "Index", new { Status = "P" })
+}
+@if (ViewBag.Status == "A")
+{
+    <b>@Html.ActionLink("Approved Grounds |", "Index", new { Status = "A" })</b>
+}
+else
+{
+    @Html.ActionLink("Approved Grounds |", "Index", new { Status = "A" })
+}
+@if (ViewBag.Status == "R")
+{
+    <b>@Html.ActionLink("Rejected Grounds ", "Index", new { Status = "R" })</b>
+}
+else
+{
+    @Html.ActionLink("Rejected Grounds ", "Index", new { Status = "R" })
+}
+<div class="container">
+    <div class="col-lg-9">
+        <div class="panel">
+            <div class="panel-body">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4" onclick="window.location.href = '@Url.Action("GroundDetails", "ApproveGroundController",new {GroundId = item.GroundId})';">
+                        <table class="table table-striped ">
+                            <tbody>
+                                <tr>
+                                    <td>Approve / Reject:</td>
+                                    <td>
+                                        @Html.ActionLink("Approve", "Approve", new { id = item.GroundId }, new { onclick = "return ConfirmApprove();" }) |
+                                        @Html.ActionLink("Reject", "Reject", new { id = item.GroundId }, new { onclick = "return ConfirmReject();" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>GroundName : </td>
+                                    <td>@Html.DisplayFor(modelItem => item.GroundName)</td>
+                                </tr>
+
+                                <tr>
+                                    <td>GroundAddress : </td>
+                                    <td>@Html.DisplayFor(modelItem => item.GroundAddress)</td>
+                                </tr>
+
+                                <tr>
+                                    <td>GroundCity : </td>
+                                    <td>@Html.DisplayFor(modelItem => item.GroundCity)</td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                        @{
+                            var base64 = Convert.ToBase64String(item.GroundImage);
+                            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" width="100" height="70" />
+                        <hr /><hr />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

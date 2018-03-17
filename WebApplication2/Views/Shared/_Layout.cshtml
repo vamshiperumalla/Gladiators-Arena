@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TrendStyle</title>
+    <link rel="icon" type="image/jpg" href="~/Images/favicon2.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        html{
+            font-size: 1.0rem !important;
+        }
+        .navbar-brand {
+            padding: 0px;
+        }
+
+        .navbar-header {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .navbar-brand > img {
+
+            height: 100%;
+            padding: 15px;
+            width: auto;
+            margin-top: 20px;
+        }
+
+        .nav {
+            display: inline-block;
+        }
+
+        body {
+            padding-top: 0px;
+            font-size: 100%;
+            font-weight: 400;
+        }
+
+       
+
+
+       
+    </style>
+</head>
+<body style="background-color:lightyellow">
+    <div style="background-color:mistyrose;color:black;padding:2px;">
+
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               
+                @*<a class="navbar-brand" href=""><img src="@Url.Content("~/Content/Images/Gladiators Arena.png")" alt="Gladiators Arena" /></a>*@
+
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.ActionLink("Home", "Index", new { controller = "Home", Area = "common" })</li>
+                    <li>@Html.ActionLink("BrowseGrounds", "Index", new { controller = "BrowseGrounds", Area = "common" })</li>
+
+                    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+
+                <li>@Html.ActionLink("ApproveGround", "Index", new { controller = "ApproveGround", Area = "Admin" })</li>
+                <li>@Html.ActionLink("Category", "Index", new { controller = "Category", Area = "Admin" })</li>
+                <li>@Html.ActionLink("ListCategory", "Index", new { controller = "ListCategory", Area = "Admin" })</li>
+                <li>@Html.ActionLink("ListLocation", "Index", new { controller = "ListLocation", Area = "Admin" })</li>
+                <li>@Html.ActionLink("ListUsers", "Index", new { controller = "ListUsers", Area = "Admin" })</li>
+                <li>@Html.ActionLink("Location", "Index", new { controller = "Location", Area = "Admin" })</li>
+                <li>@Html.ActionLink("Logout", "SignOut", new { controller = "Login", Area = "Security" })</li>
+}
+if (User.IsInRole("Facility Manger"))
+{
+                <li>@Html.ActionLink("SubmitGround", "Index", new { controller = "ground", Area = "facilitymanager" })</li>
+                <li>@Html.ActionLink("Logout", "SignOut", new { controller = "Login", Area = "Security" })</li>
+                <li><a href="#"><h4>  Welcome Mr/Ms @User.Identity.Name</h4></a></li>
+
+}
+if (User.IsInRole("Player"))
+{
+
+                <li>@Html.ActionLink("Logout", "SignOut", new { controller = "Login", Area = "Security" })</li>
+                <li><a href="#"><h4>  Welcome Mr/Ms @User.Identity.Name</h4></a></li>
+}
+
+
+}
+else
+{
+                <li>@Html.ActionLink("Login", "Index", new { controller = "Login", Area = "Security" })</li>
+                <li>@Html.ActionLink("Register", "Index", new { controller = "Register", Area = "Security" })</li>
+}
+
+
+
+                </ul>
+            </div>
+            </div>
+</div>
+
+            <hr />
+            <hr />
+            <div class="container body-content">
+
+                <br />
+                <br />
+                <br />
+               
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+</body>
+</html>

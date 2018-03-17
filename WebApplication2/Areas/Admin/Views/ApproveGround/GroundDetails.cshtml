@@ -1,0 +1,91 @@
+﻿@model BOL.tbl_Ground
+
+@{
+    ViewBag.Title = "GroundDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details for The selected Ground</h2>
+
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundImage)
+        </dt>
+
+        <dd>
+            @{
+                var base64 = Convert.ToBase64String(Model.GroundImage);
+                var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+            }
+            <img src="@imgsrc" width=" 800" height="400" />
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundCity)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundManager)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundManager)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundContact)
+        </dd>
+
+
+        <dt>
+            @Html.ActionLink("Book", "GroundDetails")
+        </dt>
+
+
+
+
+
+    </dl>
+</div>
+
+

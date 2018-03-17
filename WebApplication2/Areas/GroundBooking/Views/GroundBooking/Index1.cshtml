@@ -1,0 +1,21 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Index1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ground Booking Result</h2>
+
+@if (TempData["Msg"] != null)
+{
+    <h3>
+       
+    <span class="alert-success">
+        @Html.Raw(TempData["Msg"].ToString())
+    </span>
+
+    </h3>
+
+}

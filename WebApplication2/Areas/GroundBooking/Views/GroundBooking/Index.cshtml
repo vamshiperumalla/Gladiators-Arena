@@ -1,0 +1,96 @@
+﻿@model BOL.tbl_GroundBooking
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ground Booking</h2>
+<link href="https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+@section scripts{
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script type="text/javascript">
+       
+        //function unavailable(date) {
+        //    dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+        //    // ymd = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        //    if ($.inArray(dmy, array) == -1) {
+        //        return [true, ""];
+        //    } else {
+        //        return [false, "", "Unavailable"];
+        //    }
+        //}
+
+
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd-MM-yy',
+               // beforeShowDay: unavailable
+                min: 0,
+                max: '+3M'
+            });
+
+        });
+    </script>
+
+
+}
+@if (TempData["Msg"] != null)
+{
+    <h3>
+        @TempData["Msg"].ToString()
+    </h3>
+}
+
+
+@using (Html.BeginForm("Submit", "GroundBooking", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        @{
+
+            var day = ViewBag.Day;
+            int count = day.Length;
+
+
+            List<string> value = new List<string>();
+            for (int i = 0; i < count; i++)
+
+            {
+                value.Add(day[i].ToString("dd-MM-yyyy"));
+            }
+            var array = value.ToArray();
+
+        }
+
+
+
+
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+
+            select Date: <input type="text" id="datepicker" name="datepicker">
+
+
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+
+
+    </div>
+
+} 

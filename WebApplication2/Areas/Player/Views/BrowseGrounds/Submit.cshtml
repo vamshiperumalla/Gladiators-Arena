@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BOL.tbl_Ground>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+
+
+    <div class="container">
+        <div class="col-lg-9">
+            <div class="panel">
+                <div class="panel-body">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4" onclick="window.location.href = '@Url.Action("GroundDetails", "BrowseGrounds",new {GroundId = item.GroundId})';">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>GroundName : </td>
+                                        <td>@Html.DisplayFor(modelItem => item.GroundName)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>GroundAddress : </td>
+                                        <td>@Html.DisplayFor(modelItem => item.GroundAddress)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>GroundCity : </td>
+                                        <td>@Html.DisplayFor(modelItem => item.GroundCity)</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            @{
+                                var base64 = Convert.ToBase64String(item.GroundImage);
+                                var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                            }
+                            <img src="@imgsrc" width="200" height="150" />
+                            <hr /><hr />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+}

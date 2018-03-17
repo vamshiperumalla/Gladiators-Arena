@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ace4b3405008493daebb939858e5235a" Name="Diagram1">
+        <EntityTypeShape EntityType="projectModel.tbl_Category" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="projectModel.tbl_Ground" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projectModel.tbl_Location" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projectModel.tbl_User" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projectModel.tbl_GroundBooking" Width="1.5" PointX="0.75" PointY="5.75" />
+        <AssociationConnector Association="projectModel.FK_tbl_GroundBooking_tbl_Ground" />
+        <AssociationConnector Association="projectModel.FK_tbl_Ground_tbl_Category" />
+        <AssociationConnector Association="projectModel.FK_tbl_Ground_tbl_Ground" />
+        <AssociationConnector Association="projectModel.FK_tbl_Ground_tbl_Location" />
+        <AssociationConnector Association="projectModel.FK_tbl_Ground_tbl_User" />
+        <AssociationConnector Association="projectModel.FK_tbl_GroundBooking_tbl_Ground1" />
+        <AssociationConnector Association="projectModel.FK_tbl_GroundBooking_tbl_User" />
+        <AssociationConnector Association="projectModel.FK_tbl_GroundBooking_tbl_Category" />
+        <AssociationConnector Association="projectModel.FK_tbl_GroundBooking_tbl_Location" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
